@@ -1,11 +1,14 @@
 package com.map;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -13,23 +16,26 @@ import javax.persistence.OneToOne;
 public class Question {
 	
 @Id
-//@Column(name="Question_id")
+@Column(name="Question_id")
 private int questionId;
 	
 	
 	private String question;
     
 	
-	@OneToOne
+	@OneToMany(mappedBy ="question")// foreign key indicate
 //	@JoinColumn(name="a_'id") //for join the column
-	private Answer answer;
+	private List<Answer> answers;
 	
 	
-	public Question(int questionId, String question, Answer answer) {
+	
+
+
+	public Question(int questionId, String question, List<Answer> answers) {
 		super();
 		this.questionId = questionId;
 		this.question = question;
-		this.answer = answer;
+		this.answers = answers;
 	}
 
 
@@ -58,14 +64,15 @@ private int questionId;
 	}
 
 
-	public Answer getAnswer() {
-		return answer;
+	public List<Answer> getAnswers() {
+		return answers;
 	}
 
 
-	public void setAnswer(Answer answer) {
-		this.answer = answer;
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
 	}
+
 
 
 	

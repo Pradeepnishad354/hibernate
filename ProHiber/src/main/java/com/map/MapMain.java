@@ -1,5 +1,8 @@
 package com.map;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -25,33 +28,57 @@ public class MapMain {
 		
 		
 		
-		Question  q2=new Question();
-		q2.setQuestionId(22);
-		q2.setQuestion("what is collection ");
+//		Question  q2=new Question();
+//		q2.setQuestionId(22);
+//		q2.setQuestion("what is collection ");
 		
 		
 		
 		Answer a1=new Answer();
-		a1.setAnswerId(333);
+		a1.setAnswerId(332);
 		a1.setAnswer("hibernate is a framework of java");
 		a1.setQuestion(q1);
-		q1.setAnswer(a1);
 		
 		Answer a2=new Answer();
-		a2.setAnswerId(122);
-		a2.setAnswer("collection is framework that reprsent a single entity");
-		a2.setQuestion(q2);
-		q2.setAnswer(a2);
+		a2.setAnswerId(333);
+		a2.setAnswer("hibernate is used for mapped the java object");
+		a2.setQuestion(q1);
+		
+		Answer a3=new Answer();
+		a3.setAnswerId(334);
+		a3.setAnswer("it is also used for many relationship");
+		a3.setQuestion(q1);
+		
+		List<Answer> list=new ArrayList<Answer>();
+		
+		list.add(a1);
+		list.add(a2);
+		list.add(a3);
+		q1.setAnswers(list);
+		
+		
 		
 		//session
 	Session s=factory.openSession();
 	
 Transaction tr=	s.beginTransaction();
 	// save
-	s.save(q1);
-	s.save(q2);
-	s.save(a1);
-	s.save(a2);
+	
+s.save(q1);
+s.save(a1);
+s.save(a2);
+s.save(a3);
+
+//fetch the data
+
+//Question q=s.get(Question.class, 12);
+//
+//System.out.println(q.getQuestion());
+//
+//for(Answer a : q.getAnswers()) {
+//	
+//	System.out.println(a.getAnswer());
+//}
 	
 	tr.commit();
 		

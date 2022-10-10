@@ -5,19 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Answer {
 	
 	@Id
-//	@Column(name="answer_id")
+	@Column(name="answer_id")
 	private int answerId;
 	
 	
 	private String answer;
 	
-	@OneToOne
+	@ManyToOne
 	private Question question;
 
 	public int getAnswerId() {
